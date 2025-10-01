@@ -2,230 +2,173 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Планер Расписания</title>
+  <title>Трекер задач + Планнер</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #fff8f0;
+      margin: 0; padding: 0;
+      background: #f4f4f4;
       color: #333;
-      margin: 0;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
       padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    h1 {
-      text-align: center;
-      color: #6b4c9a;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
-    th, td {
+    h2 { margin-top: 0; }
+    input, button, select {
+      padding: 8px;
+      margin: 5px 0;
       border: 1px solid #ccc;
-      text-align: center;
-      padding: 5px;
-      word-wrap: break-word;
+      border-radius: 5px;
     }
-    th {
-      background-color: #f0e6f7;
+    button {
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border: none;
     }
-    td.sleep {
-      background-color: #cce7ff;
+    button:hover { background: #45a049; }
+    ul {
+      list-style: none;
+      padding: 0;
     }
-    td.univer {
-      background-color: #e3d4f7;
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #eee;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 5px;
     }
-    td.english {
-      background-color: #ffcce0;
+    .done { text-decoration: line-through; color: gray; }
+    .planner-day {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
     }
-    td.free {
-      background-color: #fff;
-    }
-    .time-column {
-      width: 60px;
-      background-color: #f7f3f0;
-      font-weight: bold;
-    }
+    .day-title { font-weight: bold; margin-bottom: 5px; }
   </style>
 </head>
 <body>
-  <h1>Мой недельный планер</h1>
-  <table>
-    <thead>
-      <tr>
-        <th class="time-column">Время</th>
-        <th>Понедельник</th>
-        <th>Вторник</th>
-        <th>Среда</th>
-        <th>Четверг</th>
-        <th>Пятница</th>
-        <th>Суббота</th>
-        <th>Воскресенье</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Время с 05:00 до 23:00 -->
-      <!-- Сон: 23:00–05:00 -->
-      <!-- Универ: Пн–Пт 07:00–16:00, Сб 10:30–11:20 -->
-      <!-- Английский: Пн 14:30–16:00, Ср 15:30–17:10 -->
-      <!-- Каждая строка = 30 минут -->
-      <!-- Генерация строк -->
-      <!-- 05:00 -->
-      <tr>
-        <td class="time-column">05:00</td>
-        <td class="sleep" colspan="7">Сон</td>
-      </tr>
-      <tr><td class="time-column">06:00</td><td class="sleep" colspan="7">Сон</td></tr>
-      <tr><td class="time-column">07:00</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">08:00</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">09:00</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">10:00</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">11:00</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">12:00</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">13:00</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">14:00</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="univer">Универ</td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">14:30</td>
-        <td class="english">Английский</td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">15:00</td>
-        <td class="english">Английский</td>
-        <td class="free"></td>
-        <td class="english">Английский</td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">15:30</td>
-        <td class="english">Английский</td>
-        <td class="free"></td>
-        <td class="english">Английский</td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">16:00</td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="english">Английский</td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">16:30</td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="english">Английский</td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <tr><td class="time-column">17:00</td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="english">Английский</td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-        <td class="free"></td>
-      </tr>
-      <!-- 17:30 и далее — свободное время до сна -->
-      <tr><td class="time-column">17:30</td>
-        <td class="free" colspan="7"></td>
-      </tr>
-      <tr><td class="time-column">18:00</td>
-        <td class="free" colspan="7"></td>
-      </tr>
-      <tr><td class="time-column">19:00</td>
-        <td class="free" colspan="7"></td>
-      </tr>
-      <tr><td class="time-column">20:00</td>
-        <td class="free" colspan="7"></td>
-      </tr>
-      <tr><td class="time-column">21:00</td>
-        <td class="free" colspan="7"></td>
-      </tr>
-      <tr><td class="time-column">22:00</td>
-        <td class="free" colspan="7"></td>
-      </tr>
-      <tr><td class="time-column">23:00</td>
-        <td class="sleep" colspan="7">Сон</td>
-      </tr>
-    </tbody>
-  </table>
+  <header>
+    <h1>Трекер задач + Планнер</h1>
+  </header>
+
+  <div class="container">
+    <h2>Задачи</h2>
+    <input id="taskInput" type="text" placeholder="Новая задача">
+    <button onclick="addTask()">Добавить</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <div class="container">
+    <h2>Планнер</h2>
+    <select id="daySelect">
+      <option>Понедельник</option>
+      <option>Вторник</option>
+      <option>Среда</option>
+      <option>Четверг</option>
+      <option>Пятница</option>
+      <option>Суббота</option>
+      <option>Воскресенье</option>
+    </select>
+    <input id="planInput" type="text" placeholder="Задача для дня">
+    <button onclick="addPlan()">Добавить</button>
+    <div id="planner"></div>
+  </div>
+
+  <script>
+    // ======= ТРЕКЕР ЗАДАЧ =======
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const taskList = document.getElementById("taskList");
+
+    function renderTasks() {
+      taskList.innerHTML = "";
+      tasks.forEach((task, index) => {
+        let li = document.createElement("li");
+        li.innerHTML = `
+          <span class="${task.done ? 'done' : ''}" onclick="toggleTask(${index})">${task.text}</span>
+          <button onclick="deleteTask(${index})">❌</button>
+        `;
+        taskList.appendChild(li);
+      });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      if (input.value.trim() !== "") {
+        tasks.push({ text: input.value, done: false });
+        input.value = "";
+        renderTasks();
+      }
+    }
+
+    function toggleTask(index) {
+      tasks[index].done = !tasks[index].done;
+      renderTasks();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    renderTasks();
+
+    // ======= ПЛАННЕР =======
+    let plans = JSON.parse(localStorage.getItem("plans")) || {};
+    const planner = document.getElementById("planner");
+
+    function renderPlans() {
+      planner.innerHTML = "";
+      for (let day in plans) {
+        let div = document.createElement("div");
+        div.classList.add("planner-day");
+        div.innerHTML = `<div class="day-title">${day}</div>`;
+        let ul = document.createElement("ul");
+        plans[day].forEach((p, idx) => {
+          let li = document.createElement("li");
+          li.innerHTML = `${p} <button onclick="deletePlan('${day}', ${idx})">❌</button>`;
+          ul.appendChild(li);
+        });
+        div.appendChild(ul);
+        planner.appendChild(div);
+      }
+      localStorage.setItem("plans", JSON.stringify(plans));
+    }
+
+    function addPlan() {
+      const day = document.getElementById("daySelect").value;
+      const input = document.getElementById("planInput");
+      if (input.value.trim() !== "") {
+        if (!plans[day]) plans[day] = [];
+        plans[day].push(input.value);
+        input.value = "";
+        renderPlans();
+      }
+    }
+
+    function deletePlan(day, idx) {
+      plans[day].splice(idx, 1);
+      if (plans[day].length === 0) delete plans[day];
+      renderPlans();
+    }
+
+    renderPlans();
+  </script>
 </body>
 </html>
