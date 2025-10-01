@@ -1,176 +1,231 @@
-<!DOCTYPE html><html lang="ru">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Моё расписание</title>
+  <title>Планер Расписания</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fdfcfb;
+      font-family: Arial, sans-serif;
+      background-color: #fff8f0;
       color: #333;
       margin: 0;
-      padding: 0;
-    }
-    header {
-      text-align: center;
       padding: 20px;
-      background-color: #f6ebe6;
-      color: #5c4b44;
     }
     h1 {
-      margin: 0;
-      font-size: 28px;
+      text-align: center;
+      color: #6b4c9a;
     }
     table {
-      width: 90%;
-      margin: 20px auto;
+      width: 100%;
       border-collapse: collapse;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      table-layout: fixed;
     }
     th, td {
-      padding: 12px;
-      border: 1px solid #e5dcd5;
-      text-align: left;
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 5px;
+      word-wrap: break-word;
     }
     th {
-      background-color: #f1e3dc;
-      color: #4a3c35;
-      font-size: 18px;
+      background-color: #f0e6f7;
     }
-    tr:nth-child(even) {
-      background-color: #fbf8f7;
+    td.sleep {
+      background-color: #cce7ff;
     }
-    .subject {
+    td.univer {
+      background-color: #e3d4f7;
+    }
+    td.english {
+      background-color: #ffcce0;
+    }
+    td.free {
+      background-color: #fff;
+    }
+    .time-column {
+      width: 60px;
+      background-color: #f7f3f0;
       font-weight: bold;
-      color: #6d5d57;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>📅 Моё расписание</h1>
-    <p>Учёба + английский + отдых</p>
-  </header>  <table>
-    <tr>
-      <th>День</th>
-      <th>Время</th>
-      <th>Задачи</th>
-    </tr>
-    <tr>
-      <td>Понедельник</td>
-      <td>05:30 – 07:00</td>
-      <td><span class="subject">Математика</span>: Khan Academy + задачи</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>07:00 – 16:00</td>
-      <td>Занятия в универе</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>14:30 – 16:00</td>
-      <td><span class="subject">Доп. английский</span></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>20:00 – 21:00</td>
-      <td>Английский: 6 mins English, дневник</td>
-    </tr><tr>
-  <td>Вторник</td>
-  <td>05:30 – 07:00</td>
-  <td><span class="subject">Физика</span>: задачи + видео</td>
-</tr>
-<tr>
-  <td></td>
-  <td>07:00 – 16:00</td>
-  <td>Универ</td>
-</tr>
-<tr>
-  <td></td>
-  <td>20:00 – 21:00</td>
-  <td>Английский: видео + упражнения</td>
-</tr>
-
-<tr>
-  <td>Среда</td>
-  <td>05:30 – 07:00</td>
-  <td><span class="subject">Математика</span>: задачи</td>
-</tr>
-<tr>
-  <td></td>
-  <td>07:00 – 16:00</td>
-  <td>Универ</td>
-</tr>
-<tr>
-  <td></td>
-  <td>15:30 – 17:10</td>
-  <td><span class="subject">Доп. английский</span></td>
-</tr>
-<tr>
-  <td></td>
-  <td>20:00 – 21:00</td>
-  <td>Английский: подкаст + дневник</td>
-</tr>
-
-<tr>
-  <td>Четверг</td>
-  <td>05:30 – 07:00</td>
-  <td><span class="subject">Физика</span>: видео + тесты</td>
-</tr>
-<tr>
-  <td></td>
-  <td>07:00 – 16:00</td>
-  <td>Универ</td>
-</tr>
-<tr>
-  <td></td>
-  <td>14:30 – 15:30</td>
-  <td><span class="subject">Доп. английский</span></td>
-</tr>
-<tr>
-  <td></td>
-  <td>20:00 – 21:00</td>
-  <td>Английский: фильм/сериал + грамматика</td>
-</tr>
-
-<tr>
-  <td>Пятница</td>
-  <td>05:30 – 07:00</td>
-  <td><span class="subject">Математика</span>: задачи</td>
-</tr>
-<tr>
-  <td></td>
-  <td>07:00 – 16:00</td>
-  <td>Универ</td>
-</tr>
-<tr>
-  <td></td>
-  <td>20:00 – 21:00</td>
-  <td>Английский: 6 mins English, пересказ</td>
-</tr>
-
-<tr>
-  <td>Суббота</td>
-  <td>09:00 – 11:00</td>
-  <td><span class="subject">Большая практика английского</span>: тест + блог</td>
-</tr>
-<tr>
-  <td></td>
-  <td>16:00 – 17:00</td>
-  <td>Фильм/сериал + диктофон</td>
-</tr>
-
-<tr>
-  <td>Воскресенье</td>
-  <td>10:00 – 12:00</td>
-  <td>Рефлексия + повторение слов</td>
-</tr>
-<tr>
-  <td></td>
-  <td>17:00 – 18:00</td>
-  <td>Пересказ + дневник</td>
-</tr>
-
+  <h1>Мой недельный планер</h1>
+  <table>
+    <thead>
+      <tr>
+        <th class="time-column">Время</th>
+        <th>Понедельник</th>
+        <th>Вторник</th>
+        <th>Среда</th>
+        <th>Четверг</th>
+        <th>Пятница</th>
+        <th>Суббота</th>
+        <th>Воскресенье</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Время с 05:00 до 23:00 -->
+      <!-- Сон: 23:00–05:00 -->
+      <!-- Универ: Пн–Пт 07:00–16:00, Сб 10:30–11:20 -->
+      <!-- Английский: Пн 14:30–16:00, Ср 15:30–17:10 -->
+      <!-- Каждая строка = 30 минут -->
+      <!-- Генерация строк -->
+      <!-- 05:00 -->
+      <tr>
+        <td class="time-column">05:00</td>
+        <td class="sleep" colspan="7">Сон</td>
+      </tr>
+      <tr><td class="time-column">06:00</td><td class="sleep" colspan="7">Сон</td></tr>
+      <tr><td class="time-column">07:00</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">08:00</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">09:00</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">10:00</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">11:00</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">12:00</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">13:00</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">14:00</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="univer">Универ</td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">14:30</td>
+        <td class="english">Английский</td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">15:00</td>
+        <td class="english">Английский</td>
+        <td class="free"></td>
+        <td class="english">Английский</td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">15:30</td>
+        <td class="english">Английский</td>
+        <td class="free"></td>
+        <td class="english">Английский</td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">16:00</td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="english">Английский</td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">16:30</td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="english">Английский</td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <tr><td class="time-column">17:00</td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="english">Английский</td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+        <td class="free"></td>
+      </tr>
+      <!-- 17:30 и далее — свободное время до сна -->
+      <tr><td class="time-column">17:30</td>
+        <td class="free" colspan="7"></td>
+      </tr>
+      <tr><td class="time-column">18:00</td>
+        <td class="free" colspan="7"></td>
+      </tr>
+      <tr><td class="time-column">19:00</td>
+        <td class="free" colspan="7"></td>
+      </tr>
+      <tr><td class="time-column">20:00</td>
+        <td class="free" colspan="7"></td>
+      </tr>
+      <tr><td class="time-column">21:00</td>
+        <td class="free" colspan="7"></td>
+      </tr>
+      <tr><td class="time-column">22:00</td>
+        <td class="free" colspan="7"></td>
+      </tr>
+      <tr><td class="time-column">23:00</td>
+        <td class="sleep" colspan="7">Сон</td>
+      </tr>
+    </tbody>
   </table>
 </body>
 </html>
