@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Трекер задач + Планнер</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 { margin-top: 0; }
+    input, button, select {
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover { background: #45a049; }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #eee;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 5px;
+    }
+    .done { text-decoration: line-through; color: gray; }
+    .planner-day {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .day-title { font-weight: bold; margin-bottom: 5px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Трекер задач + Планнер</h1>
+  </header>
+
+  <div class="container">
+    <h2>Задачи</h2>
+    <input id="taskInput" type="text" placeholder="Новая задача">
+    <button onclick="addTask()">Добавить</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <div class="container">
+    <h2>Планнер</h2>
+    <select id="daySelect">
+      <option>Понедельник</option>
+      <option>Вторник</option>
+      <option>Среда</option>
+      <option>Четверг</option>
+      <option>Пятница</option>
+      <option>Суббота</option>
+      <option>Воскресенье</option>
+    </select>
+    <input id="planInput" type="text" placeholder="Задача для дня">
+    <button onclick="addPlan()">Добавить</button>
+    <div id="planner"></div>
+  </div>
+
+  <script>
+    // ======= ТРЕКЕР ЗАДАЧ =======
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const taskList = document.getElementById("taskList");
+
+    function renderTasks() {
+      taskList.innerHTML = "";
+      tasks.forEach((task, index) => {
+        let li = document.createElement("li");
+        li.innerHTML = `
+          <span class="${task.done ? 'done' : ''}" onclick="toggleTask(${index})">${task.text}</span>
+          <button onclick="deleteTask(${index})">❌</button>
+        `;
+        taskList.appendChild(li);
+      });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      if (input.value.trim() !== "") {
+        tasks.push({ text: input.value, done: false });
+        input.value = "";
+        renderTasks();
+      }
+    }
+
+    function toggleTask(index) {
+      tasks[index].done = !tasks[index].done;
+      renderTasks();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    renderTasks();
+
+    // ======= ПЛАННЕР =======
+    let plans = JSON.parse(localStorage.getItem("plans")) || {};
+    const planner = document.getElementById("planner");
+
+    function renderPlans() {
+      planner.innerHTML = "";
+      for (let day in plans) {
+        let div = document.createElement("div");
+        div.classList.add("planner-day");
+        div.innerHTML = `<div class="day-title">${day}</div>`;
+        let ul = document.createElement("ul");
+        plans[day].forEach((p, idx) => {
+          let li = document.createElement("li");
+          li.innerHTML = `${p} <button onclick="deletePlan('${day}', ${idx})">❌</button>`;
+          ul.appendChild(li);
+        });
+        div.appendChild(ul);
+        planner.appendChild(div);
+      }
+      localStorage.setItem("plans", JSON.stringify(plans));
+    }
+
+    function addPlan() {
+      const day = document.getElementById("daySelect").value;
+      const input = document.getElementById("planInput");
+      if (input.value.trim() !== "") {
+        if (!plans[day]) plans[day] = [];
+        plans[day].push(input.value);
+        input.value = "";
+        renderPlans();
+      }
+    }
+
+    function deletePlan(day, idx) {
+      plans[day].splice(idx, 1);
+      if (plans[day].length === 0) delete plans[day];
+      renderPlans();
+    }
+
+    renderPlans();
+  </script>
+</body>
+</html>
