@@ -33,14 +33,6 @@
       top: 0;
       z-index: 2;
     }
-    .time-column {
-      background-color: #f7f3f0;
-      font-weight: bold;
-      width: 90px;
-      position: sticky;
-      left: 0;
-      z-index: 1;
-    }
     td[contenteditable="true"] {
       background-color: #ffffff;
       cursor: text;
@@ -48,6 +40,14 @@
     td[contenteditable="true"]:focus {
       outline: 2px solid #6b4c9a;
       background-color: #fdf2ff;
+    }
+    .time-column {
+      background-color: #f7f3f0;
+      font-weight: bold;
+      min-width: 90px;
+      position: sticky;
+      left: 0;
+      z-index: 1;
     }
   </style>
 </head>
@@ -67,38 +67,44 @@
       </tr>
     </thead>
     <tbody id="planner-body">
-      <!-- Ячейки будут сгенерированы JS -->
+      <!-- строки генерируются JS -->
     </tbody>
   </table>
 
   <script>
-    const startHour = 5;   // начало 5:00
-    const endHour = 23;    // конец 23:00
+    const startHour = 5;   // начало (5 утра)
+    const endHour = 23;    // конец (23 вечера)
     const plannerBody = document.getElementById("planner-body");
 
-    // генерация строк
     for (let hour = startHour; hour < endHour; hour++) {
       let row = document.createElement("tr");
 
-      // колонка времени
+      // редактируемая колонка времени
       let timeCell = document.createElement("td");
       timeCell.classList.add("time-column");
-      timeCell.textContent = `${hour}:00 - ${hour+1}:00`;
+      timeCell.setAttribute("contenteditable", "true");
+
+      let timeKey = `time-${hour}`;
+      timeCell.textContent = localStorage.getItem(timeKey) || `${hour}:00 - ${hour+1}:00`;
+
+      timeCell.addEventListener("input", () => {
+        localStorage.setItem(timeKey, timeCell.textContent);
+      });
+
       row.appendChild(timeCell);
 
-      // дни недели
+      // остальные дни недели
       for (let day = 1; day <= 7; day++) {
         let cell = document.createElement("td");
         cell.setAttribute("contenteditable", "true");
         let cellKey = `cell-${hour}-${day}`;
-        // загружаем сохранённый текст
         cell.textContent = localStorage.getItem(cellKey) || "";
-        // сохраняем при изменении
         cell.addEventListener("input", () => {
           localStorage.setItem(cellKey, cell.textContent);
         });
         row.appendChild(cell);
       }
+
       plannerBody.appendChild(row);
     }
   </script>
